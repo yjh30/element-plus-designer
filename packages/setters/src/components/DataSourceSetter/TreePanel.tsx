@@ -36,7 +36,7 @@ export const TreePanel = observer(
             defaultOptionValue: { type: Object as PropType<ITreePanelProps['defaultOptionValue']> }
         },
         setup(props) {
-            const prefix = usePrefix('data-source-setter')
+            const prefixRef = usePrefix('data-source-setter')
             // const dropHandler = (info: Parameters<TreeProps['onNode-drop']>[0]) => {
             //     const dropKey = info.node?.key
             //     const dragKey = info.dragNode?.key
@@ -87,6 +87,7 @@ export const TreePanel = observer(
             //     props.treeDataSource.dataSource = data
             // }
             return () => {
+                const prefix = prefixRef.value
                 return <>
                     <Header
                         title={
