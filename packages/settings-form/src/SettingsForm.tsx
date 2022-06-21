@@ -144,7 +144,7 @@ export const SettingsForm = defineComponent({
       }
 
       return (
-        <IconWidget.Provider props={{ tooltip: true }}>
+        <IconWidget.Provider {...{ tooltip: true }}>
           <div class={prefix + '-wrapper'} {...attrs}>
             {!source?.isEmpty && (
               <NodePathWidget workspaceId={currentWorkspaceId} />
