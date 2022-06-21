@@ -20,11 +20,12 @@ const StudioPanelInternal = defineComponent({
   name: 'StudioPanelInternal',
   setup(props, { attrs, slots }) {
     const prefixRef = usePrefix('main-panel')
-    const position = usePosition()
+    const positionRef = usePosition()
 
-    if (slots.logo || slots.actions) {
-      return () => {
-        const prefix = unref(prefixRef)
+    return () => {
+      const position = unref(positionRef)
+      const prefix = unref(prefixRef)
+      if (slots.logo || slots.actions) {
         return (
           <div {...attrs} class={cls(prefix + '-container', 'root', position)}>
             <div class={prefix + '-header'}>
@@ -39,13 +40,12 @@ const StudioPanelInternal = defineComponent({
           </div>
         )
       }
+      return (
+        <div {...attrs} class={cls(prefixRef.value, 'root', position)}>
+          {slots.default?.()}
+        </div>
+      )
     }
-
-    return () => (
-      <div {...attrs} class={cls(prefixRef.value, 'root', position)}>
-        {slots.default?.()}
-      </div>
-    )
   },
 })
 

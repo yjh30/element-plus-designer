@@ -29,7 +29,7 @@ const TypeView = defineComponent({
             const text = String(value)
             if (text.length <= 26)
                 return (
-                    <Tag effect="plain" type="info">
+                    <Tag effect="plain" type="info" disableTransitions>
                         {text}
                     </Tag>
                 )
@@ -211,7 +211,7 @@ export const ReactionsSetter = defineComponent({
                         key={modalVisible + ''}
                         {...{ onClosed: closeModal }}
                         v-slots={{
-                            title: () => <TextWidget token="SettingComponents.ReactionsSetter.configureReactions" />,
+                            header: () => <TextWidget token="SettingComponents.ReactionsSetter.configureReactions" />,
                             footer: () => (
                                 <ElSpace>
                                     <Button onClick={closeModal}>Cancel</Button>

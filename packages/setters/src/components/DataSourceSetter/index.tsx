@@ -67,7 +67,7 @@ export const DataSourceSetter = observer(
                         <Modal
                             {...{ onClosed: closeModal }}
                             v-slots={{
-                                title: () => <TextWidget token="SettingComponents.DataSourceSetter.configureDataSource" />,
+                                header: () => <TextWidget token="SettingComponents.DataSourceSetter.configureDataSource" />,
                                 footer: () => (
                                     <ElSpace>
                                         <Button onClick={closeModal}>Cancel</Button>
