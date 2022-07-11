@@ -24,7 +24,7 @@ export const isVnode = isVNode
 //   )
 // }
 
-export function isVueOptions(options) {
+export function isVueOptions(options: any) {
   return (
     options &&
     (typeof options.template === 'string' ||
