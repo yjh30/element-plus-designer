@@ -5,6 +5,7 @@ import {
     ValidatorSetter,
 } from '@formily/element-plus-setters'
 import { AllSchemas } from '../../schemas'
+import { bizInstance } from '../../common/Biz'
 // TODO::setter没做
 export const createComponentSchema = (component: ISchema, decorator: ISchema) => {
     return {
@@ -37,36 +38,36 @@ export const createComponentSchema = (component: ISchema, decorator: ISchema) =>
                 'x-decorator-props': decorator
             }
         },
-        'component-style-group': {
-            type: 'void',
-            'x-component': 'CollapseItem',
-            'x-component-props': { defaultExpand: false },
-            'x-reactions': {
-                fulfill: {
-                    state: {
-                        visible: '{{!!$form.values["x-component"]}}'
-                    }
-                }
-            },
-            properties: {
-                'x-component-props.style': AllSchemas.CSSStyle
-            }
-        },
-        'decorator-style-group': {
-            type: 'void',
-            'x-component': 'CollapseItem',
-            'x-component-props': { defaultExpand: false },
-            'x-reactions': {
-                fulfill: {
-                    state: {
-                        visible: '{{!!$form.values["x-decorator"]}}'
-                    }
-                }
-            },
-            properties: {
-                'x-decorator-props.style': AllSchemas.CSSStyle
-            }
-        }
+        // 'component-style-group': {
+        //     type: 'void',
+        //     'x-component': 'CollapseItem',
+        //     'x-component-props': { defaultExpand: false },
+        //     'x-reactions': {
+        //         fulfill: {
+        //             state: {
+        //                 visible: '{{!!$form.values["x-component"]}}'
+        //             }
+        //         }
+        //     },
+        //     properties: {
+        //         'x-component-props.style': AllSchemas.CSSStyle
+        //     }
+        // },
+        // 'decorator-style-group': {
+        //     type: 'void',
+        //     'x-component': 'CollapseItem',
+        //     'x-component-props': { defaultExpand: false },
+        //     'x-reactions': {
+        //         fulfill: {
+        //             state: {
+        //                 visible: '{{!!$form.values["x-decorator"]}}'
+        //             }
+        //         }
+        //     },
+        //     properties: {
+        //         'x-decorator-props.style': AllSchemas.CSSStyle
+        //     }
+        // }
     }
 }
 
@@ -74,6 +75,27 @@ export const createFieldSchema = (component?: ISchema, decorator: ISchema = AllS
     return {
         type: 'object',
         properties: {
+            'source-group': {
+                type: 'void',
+                'x-display': bizInstance.isPresetMode() ? 'visible' : 'none',
+                'x-component': 'CollapseItem',
+                properties: {
+                    'x-resource-group-name': {
+                        type: 'string',
+                        required: true,
+                        'x-decorator': 'FormItem',
+                        'x-component': 'Input',
+                        'x-component-props': {}
+                    },
+                    'x-resource-group-title': {
+                        type: 'string',
+                        required: true,
+                        'x-decorator': 'FormItem',
+                        'x-component': 'Input',
+                        'x-component-props': {}
+                    }
+                }
+            },
             'field-group': {
                 type: 'void',
                 'x-component': 'CollapseItem',
@@ -101,6 +123,13 @@ export const createFieldSchema = (component?: ISchema, decorator: ISchema = AllS
                         'x-component-props': {
                             rows: 1
                         }
+                    },
+                    'x-resource-component-icon': {
+                        type: 'string',
+                        format: 'url',
+                        'x-display': bizInstance.isPresetMode() ? 'visible' : 'none',
+                        'x-decorator': 'FormItem',
+                        'x-component': 'Input',
                     },
                     'x-display': {
                         default: 'visible',

@@ -240,10 +240,10 @@ const DesignerToolsWidgetComponent = defineComponent({
       return (
         <div style={style} class={cls(prefixRef.value, props.className)}>
           {renderHistoryController()}
-          {renderCursorController()}
-          {renderScreenTypeController()}
-          {renderMobileController()}
-          {renderResponsiveController()}
+          {/* {renderCursorController()} */}
+          {/* {renderScreenTypeController()} */}
+          {/* {renderMobileController()} */}
+          {/* {renderResponsiveController()} */}
         </div>
       )
     }

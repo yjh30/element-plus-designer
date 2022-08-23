@@ -29,8 +29,11 @@ const StudioPanelInternal = defineComponent({
         return (
           <div {...attrs} class={cls(prefix + '-container', 'root', position)}>
             <div class={prefix + '-header'}>
-              <div class={prefix + '-header-logo'}>
+              {/* <div class={prefix + '-header-logo'}>
                 {slots.logo?.()}
+              </div> */}
+              <div class={prefix + '-header-title'}>
+                {slots.title?.()}
               </div>
               <div class={prefix + '-header-actions'}>
                 {slots.actions?.()}
