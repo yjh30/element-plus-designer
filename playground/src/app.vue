@@ -31,11 +31,16 @@
         <WorkspacePanel :style="{height:'100%'}">
           <ToolbarPanel>
             <DesignerToolsWidget />
-            <ViewToolsWidget :use="['DESIGNABLE']" />
+            <ViewToolsWidget :use="['DESIGNABLE', 'JSONTREE']" />
           </ToolbarPanel>
           <ViewportPanel>
             <ViewPanel type="DESIGNABLE">
               <ComponentTreeWidget :components="components"></ComponentTreeWidget>
+            </ViewPanel>
+            <ViewPanel type="JSONTREE" :scrollable="false">
+              <template #default="tree, onChange">
+                <SchemaEditorWidget :tree="tree" @change="onChange"></SchemaEditorWidget>
+              </template>
             </ViewPanel>
           </ViewportPanel>
         </WorkspacePanel>
