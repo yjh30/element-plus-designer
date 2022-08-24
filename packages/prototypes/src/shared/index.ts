@@ -13,7 +13,7 @@ import { useAttrs } from 'vue'
 export const cloneElement = cloneVNode
 
 const css2obj = (css: string) => {
-    const r = /(?<=^|;)\s*([^:]+)\s*:\s*([^;]+)\s*/g,
+    const r = /(?:^|;)\s*([^:]+)\s*:\s*([^;]+)\s*/g,
         o = {}
     css.replace(r, (m, p, v) => (o[p] = v))
     return o
