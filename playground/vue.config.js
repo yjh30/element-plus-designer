@@ -27,7 +27,8 @@ module.exports = defineConfig({
         config.resolve.alias.set('@formily/reactive-vue', path.resolve(__dirname, '../node_modules/@formily/reactive-vue'))
         config.resolve.alias.set('@formily/shared', path.resolve(__dirname, '../node_modules/@formily/shared'))
         config.resolve.alias.set('@formily/validator', path.resolve(__dirname, '../node_modules/@formily/validator'))
-        config.resolve.alias.set('@formily/vue', path.resolve(__dirname, '../node_modules/@formily/vue'))
+        config.resolve.alias.set('@guolao/vue-monaco-editor', path.resolve(__dirname, '../node_modules/@guolao/vue-monaco-editor'))
+        config.resolve.alias.set('monaco-editor', path.resolve(__dirname, '../node_modules/monaco-editor'))
     },
     devServer: {
         headers: {
