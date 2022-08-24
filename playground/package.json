@@ -11,7 +11,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@formily/vue": "2.1.5",
+        "@formily/vue": "2.2.1",
         "@formily/element-plus": "1.0.0-beta.2",
         "@formily/element-plus-prototypes": "1.0.0-beta.2",
         "@formily/element-plus-renderer": "1.0.0-beta.2",
@@ -23,7 +23,7 @@
         "@vue/cli-plugin-router": "~5.0.4",
         "@vue/cli-plugin-typescript": "~5.0.4",
         "@vue/cli-service": "~5.0.4",
-        "@guolao/vue-monaco-editor": "^0.0.4",
+        "@guolao/vue-monaco-editor": "^0.0.5",
         "sass": "^1.51.0",
         "sass-loader": "^12.6.0",
         "typescript": "~4.6.4",

@@ -23,6 +23,7 @@ module.exports = defineConfig({
         config.resolve.alias.set('@formily/grid', path.resolve(__dirname, '../node_modules/@formily/grid'))
         config.resolve.alias.set('@formily/json-schema', path.resolve(__dirname, '../node_modules/@formily/json-schema'))
         config.resolve.alias.set('@formily/path', path.resolve(__dirname, '../node_modules/@formily/path'))
+        config.resolve.alias.set('@formily/vue', path.resolve(__dirname, '../node_modules/@formily/vue'))
         config.resolve.alias.set('@formily/reactive', path.resolve(__dirname, '../node_modules/@formily/reactive'))
         config.resolve.alias.set('@formily/reactive-vue', path.resolve(__dirname, '../node_modules/@formily/reactive-vue'))
         config.resolve.alias.set('@formily/shared', path.resolve(__dirname, '../node_modules/@formily/shared'))
