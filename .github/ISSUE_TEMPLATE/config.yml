@@ -1,5 +1,7 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Create new issue
+    url: https://github.com/qq1037305420/element-plus/issues/new
   - name: ✨ Question Answer / Idea
     url: https://github.com/alibaba/formily/discussions/new
     about: All questions can be solved here. At the same time you can provide all your ideas here.
