@@ -2,18 +2,24 @@
   <Designer :engine="engine">
     <Workbench>
       <StudioPanel>
-        <template #logo>
-          <LogoWidget />
+        <template #title>
+          <title-widget></title-widget>
         </template>
         <template #actions>
           <actions-widget />
         </template>
         <CompositePanel>
           <CompositePanelItem title="panels.Component" icon="Component">
-            <ResourceWidget title="sources.Inputs" :sources="sources.Inputs" />
-            <ResourceWidget title="sources.Layouts" :sources="sources.Layouts" />
-            <ResourceWidget title="sources.Arrays" :sources="sources.Arrays" />
-            <ResourceWidget title="sources.Displays" :sources="sources.Displays" />
+            <template
+              v-for="key in sourceGroupKeys"
+              :key="`sources.${key}`"
+            >
+              <ResourceWidget
+                v-if="sources[key] && sources[key].length > 0"
+                :title="`sources.${key}`"
+                :sources="sources[key]"
+              />
+            </template>
           </CompositePanelItem>
           <CompositePanelItem title="panels.OutlinedTree" icon="Outline">
             <OutlineTreeWidget />
@@ -25,7 +31,7 @@
         <WorkspacePanel :style="{height:'100%'}">
           <ToolbarPanel>
             <DesignerToolsWidget />
-            <ViewToolsWidget :use="['DESIGNABLE', 'JSONTREE', 'PREVIEW']" />
+            <ViewToolsWidget :use="['DESIGNABLE', 'JSONTREE']" />
           </ToolbarPanel>
           <ViewportPanel>
             <ViewPanel type="DESIGNABLE">
@@ -34,11 +40,6 @@
             <ViewPanel type="JSONTREE" :scrollable="false">
               <template #default="tree, onChange">
                 <SchemaEditorWidget :tree="tree" @change="onChange"></SchemaEditorWidget>
-              </template>
-            </ViewPanel>
-            <ViewPanel type="PREVIEW" :scrollable="false">
-              <template #default="tree, onChange">
-                <PreviewWidget :tree="tree" />
               </template>
             </ViewPanel>
           </ViewportPanel>
@@ -51,7 +52,7 @@
   </Designer>
 </template>
 <script lnag="ts">
-import { createDesigner, GlobalRegistry } from '@designable/core'
+import { createDesigner } from '@designable/core'
 import {
   Designer,
   Workbench,
@@ -99,24 +100,8 @@ import {
   Rate,
 } from '@formily/element-plus-renderer'
 import { SettingsForm } from '@formily/element-plus-settings-form'
-GlobalRegistry.registerDesignerLocales({
-  'zh-CN': {
-    sources: {
-      Inputs: '输入控件',
-      Layouts: '布局组件',
-      Arrays: '自增组件',
-      Displays: '展示组件',
-    },
-  },
-  'en-US': {
-    sources: {
-      Inputs: 'Inputs',
-      Layouts: 'Layouts',
-      Arrays: 'Arrays',
-      Displays: 'Displays',
-    },
-  },
-})
+import { useSources } from './hooks/useSources'
+
 import { defineComponent } from 'vue'
 export default defineComponent({
   components: {
@@ -139,10 +124,12 @@ export default defineComponent({
     SettingsForm,
   },
   setup() {
+    const { sources, sourceGroupKeys } = useSources();
     const engine = createDesigner({
       shortcuts: [],
       rootComponentName: 'Form',
-    })
+    });
+
     return {
       engine,
       components: {
@@ -174,29 +161,8 @@ export default defineComponent({
         Password,
         Rate,
       },
-      sources: {
-        Inputs: [
-          Input,
-          Password,
-          InputNumber,
-          Rate,
-          Slider,
-          Select,
-          TreeSelect,
-          Cascader,
-          Transfer,
-          Checkbox,
-          Radio,
-          DatePicker,
-          TimePicker,
-          Upload,
-          Switch,
-          ObjectContainer,
-        ],
-        Arrays: [ArrayCards, ArrayTable],
-        Displays: [Text],
-        Layouts: [Card, Space, FormGrid, FormLayout, FormTab, FormCollapse],
-      },
+      sources,
+      sourceGroupKeys,
     }
   },
 })

@@ -1,19 +1,22 @@
 <template>
   <div class="dn-actions-widget">
-    <el-radio-group :modelValue="language" @change="handleChangeLanguage">
-      <el-radio-button label="zh-cn">简体中文</el-radio-button>
-      <el-radio-button label="en-us">English</el-radio-button>
-    </el-radio-group>
-    <el-button :style="{ marginLeft: '10px' }" @click="handleSaveSchema">保存</el-button>
-    <el-button @click="handleSaveSchema">发布</el-button>
+    <el-button
+      @click="handleSaveSchema"
+      type="primary"
+    >
+      {{buttonText}}
+    </el-button>
+
+    <el-button @click="onClosePage">关闭页面</el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { loadInitialSchema, saveSchema } from '../service'
+import { bizInstance } from '../service/biz'
 import { GlobalRegistry } from '@designable/core'
-import { useDesigner, useTree } from '@formily/element-plus-prototypes'
+import { useDesigner } from '@formily/element-plus-prototypes'
 
 function useI18n() {
   const language = ref(
@@ -35,17 +38,17 @@ export default defineComponent({
 
     onMounted(() => {
       loadInitialSchema(designerRef.value)
-      const supportLocales = ['zh-cn', 'en-us', 'ko-kr']
-      if (!supportLocales.includes(GlobalRegistry.getDesignerLanguage())) {
-        GlobalRegistry.setDesignerLanguage('zh-cn')
-      }
     })
 
     function handleSaveSchema() {
       saveSchema(designerRef.value)
     }
 
-    return { ...useI18n(), handleSaveSchema }
+    function onClosePage() {
+      history.back();
+    }
+
+    return { ...useI18n(), handleSaveSchema, onClosePage, buttonText: bizInstance.buttonText }
   },
 })
 </script>

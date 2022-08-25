@@ -2,7 +2,7 @@ import { isStr } from '@designable/shared'
 import { useAttrs, getCurrentInstance, StyleValue, CSSProperties } from 'vue'
 
 const css2obj = (css) => {
-    const r = /(?<=^|;)\s*([^:]+)\s*:\s*([^;]+)\s*/g,
+    const r = /(?:^|;)\s*([^:]+)\s*:\s*([^;]+)\s*/g,
         o = {}
     css.replace(r, (m, p, v) => (o[p] = v))
     return o

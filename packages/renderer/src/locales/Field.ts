@@ -7,6 +7,8 @@ export const Field = {
       description: '描述',
       default: '默认值',
       enum: '可选项',
+      'x-resource-group-name': '字段分组标志',
+      'x-resource-group-title': '字段分组名称',
       'x-display': {
         title: '展示状态',
         tooltip: '半隐藏只会隐藏UI，全隐藏会删除数据',
@@ -19,6 +21,8 @@ export const Field = {
       'x-validator': '校验规则',
       'x-decorator': '容器组件',
       'x-reactions': '响应器规则',
+      'x-resource-component-icon': '字段标志icon',
+      'source-group': '字段分组属性',
       'field-group': '字段属性',
       'component-group': '组件属性',
       'decorator-group': '容器属性',
@@ -107,6 +111,8 @@ export const Field = {
       description: 'Description',
       default: 'Default',
       enum: 'Options',
+      'x-resource-group-name': 'Field Group Name',
+      'x-resource-group-title': 'Field Group Title',
       'x-display': {
         title: 'Display State',
         tooltip:
@@ -126,6 +132,8 @@ export const Field = {
       'x-validator': 'Validator',
       'x-decorator': 'Decorator',
       'x-reactions': 'Reactions',
+      'x-resource-component-icon': 'Field Resource Icon',
+      'source-group': 'Field Group Properties',
       'field-group': 'Field Properties',
       'component-group': 'Component Properties',
       'decorator-group': 'Decorator Properties',

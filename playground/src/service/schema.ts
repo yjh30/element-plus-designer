@@ -1,4 +1,4 @@
-import { Engine } from '@designable/core'
+import { Engine } from '@designable/core';
 import {
   transformToSchema,
   transformToTreeNode,
@@ -17,6 +17,7 @@ export const loadInitialSchema = (designer: Engine) => {
   try {
     const tree = transformToTreeNode(
       JSON.parse(localStorage.getItem('formily-schema'))
+      // {}
     )
     designer.setCurrentTree(tree)
   } catch (err) { }
